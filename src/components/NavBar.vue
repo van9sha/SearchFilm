@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import { ref } from 'vue'
+import {VideoPlay} from "@element-plus/icons-vue";
 
 const activeIndex = ref('1')
 const handleSelect = (key: string, keyPath: string[]) => {
@@ -15,7 +16,7 @@ const handleSelect = (key: string, keyPath: string[]) => {
       :ellipsis="false"
       @select="handleSelect"
   >
-    <el-menu-item index="0">LOGO</el-menu-item>
+    <el-menu-item index="0"><img class="img" src='src/assets/img/logo2.jpg'></el-menu-item>
     <div class="flex-grow" />
     <el-menu-item index="1">Processing Center</el-menu-item>
     <el-sub-menu index="2">
@@ -36,5 +37,9 @@ const handleSelect = (key: string, keyPath: string[]) => {
 <style lang="sass" scoped>
 .flex-grow
   flex-grow: 1
+
+.img
+  width: 60px
+  height: 60px
 
 </style>

@@ -10,9 +10,10 @@ import CardItem from "@/components/CardItem.vue";
 
 const rootStore = useRootStore();
 rootStore.getFilm()
+rootStore.getStartedFilm()
 const {filmInfo,filmName,filmsSearch} = storeToRefs(rootStore);
 
-onMounted(rootStore.getFilm)
+onMounted(rootStore.getStartedFilm)
 </script>
 
 <template>
