@@ -7,17 +7,20 @@ import {API_KEY, BASE_FILMS_URL} from "@/constants";
 export const useRootStore = defineStore('root', {
     state: () => ({
         filmInfo: [],
-        filmName: ''
+        filmName: 'Fury',
+        filmsSearch:[]
     }),
     actions: {
         async getFilm() {
             const options = {
                 method: 'GET',
-                url: 'https://moviesdatabase.p.rapidapi.com/titles/search/title/Fury',
+                url: `https://moviesdatabase.p.rapidapi.com/titles/search/title/${this.filmName}`,
                 params: {
-                    exact: 'true',
+
                     titleType: 'movie',
-                    limit: '5'
+                    limit: '20',
+                    list: 'most_pop_movies'
+
                 },
                 headers: {
                     'X-RapidAPI-Key': '69636914a6mshed648cbb5127466p1d9a31jsndd0ef5c5e50e',

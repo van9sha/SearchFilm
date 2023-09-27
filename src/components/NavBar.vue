@@ -33,8 +33,8 @@ const handleSelect = (key: string, keyPath: string[]) => {
   </el-menu>
 </template>
 
-<style scoped>
-.flex-grow {
-  flex-grow: 1;
-}
+<style lang="sass" scoped>
+.flex-grow
+  flex-grow: 1
+
 </style>
