@@ -1,5 +1,4 @@
-<script  setup>
-
+<script setup>
 
 import NavBar from "@/components/NavBar.vue";
 import Input from '@/components/Input.vue'
@@ -13,7 +12,7 @@ rootStore.getFilm()
 rootStore.getStartedFilm()
 const {filmInfo,filmName,filmsSearch} = storeToRefs(rootStore);
 
-onMounted(rootStore.getFilm)
+onMounted(rootStore.getStartedFilm)
 </script>
 
 <template>
@@ -21,19 +20,19 @@ onMounted(rootStore.getFilm)
           :getFilm="rootStore.getFilm"
   />
   <div class="cardPlace">
-      <CardItem
-          v-for="filmSearch in filmInfo"
-          :filmSearch="filmSearch"
-          :key="filmInfo?.id"
-          :filmInfo="filmInfo"
-          :filmName="filmName"
-          :getFilm="rootStore.getFilm"
+    <CardItem
+        v-for="filmSearch in filmInfo"
+        :filmSearch="filmSearch"
+        :key="filmInfo?.id"
+        :filmInfo="filmInfo"
+        :filmName="filmName"
+        :getFilm="rootStore.getFilm"
 
-      />
+    />
   </div>
 </template>
 
-<style lang="sass" scoped>
+<style scoped lang="sass">
 .cardPlace
   display: flex
   flex-wrap: wrap

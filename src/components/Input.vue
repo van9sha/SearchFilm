@@ -1,6 +1,8 @@
 <script setup>
 
 
+import router from "@/router";
+
 const props = defineProps({
   getFilm:{
     type:Function,
@@ -12,12 +14,20 @@ const props = defineProps({
 
 <template>
   <el-input
-
-      @keyup.enter = 'getFilm'
+      class="input"
+      @keyup.enter = 'getFilm;router.push({ path: "/Home" })'
       placeholder="Please input"
+
   />
 </template>
 
 <style lang="sass" scoped>
+
+.input
+  padding: 10px 90px 5px 30px
+  display: flex
+  height: 50px
+  font-size: 24px
+
 
 </style>

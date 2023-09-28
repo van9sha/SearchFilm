@@ -1,4 +1,9 @@
 <script setup>
+import {useRoute} from "vue-router";
+
+const route = useRoute();
+
+
 const props = defineProps({
   filmInfo:{
     type:[Object,null],
@@ -9,11 +14,20 @@ const props = defineProps({
   },
   filmSearch:{
     type:[Object]
-  }
+  },
+  filmName:{
+    type:String
+  },
+  getFilm:{
+    type:Function,
+    required:true
+  },
 })
 </script>
 
+
 <template>
+  <RouterLink :filmName="filmName" :getFilm="getFilm"  :to="`/${filmSearch?.id}`">
   <el-card class="box-card">
     <template #header>
       <div class="card-header">
@@ -22,11 +36,14 @@ const props = defineProps({
     </template>
     <h5>{{ filmSearch?.originalTitleText?.text }}</h5>
   </el-card>
+  </RouterLink>
 </template>
 
 <style lang="sass" scoped>
 .box-card
   width: 200px
+  margin-top: 10px
+  margin-left: 5px
 
 
 .image

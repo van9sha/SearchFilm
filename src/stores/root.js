@@ -42,7 +42,7 @@ export const useRootStore = defineStore('root', {
                 method: 'GET',
                 url: 'https://moviesdatabase.p.rapidapi.com/titles/random',
                 params: {
-                    limit: '10',
+                    limit: '12',
                     list: 'most_pop_movies'
                 },
                 headers: {
