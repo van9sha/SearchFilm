@@ -8,6 +8,7 @@ import NavBar from "@/components/NavBar.vue";
 const route = useRoute();
 
 const detailFilmInfo = ref(null)
+const extendedCast = ref(null)
 
 const props = defineProps({
   filmName:{
@@ -31,11 +32,50 @@ async function getDetailCard() {
   try {
     const response = await axios.request(options);
     detailFilmInfo.value = response?.data.results
-    console.log(detailFilmInfo.value);
   } catch (error) {
     console.log(error);
   }
 }
+
+
+//Cast
+async function getExtendedCast(){
+  const options = {
+    method: 'GET',
+    url: `https://moviesdatabase.p.rapidapi.com/titles/${filmId.value}`,
+    params: {
+      info: 'extendedCast'
+    },
+    headers: {
+      'X-RapidAPI-Key': '69636914a6mshed648cbb5127466p1d9a31jsndd0ef5c5e50e',
+      'X-RapidAPI-Host': 'moviesdatabase.p.rapidapi.com'
+    }
+  };
+
+  try {
+    const response = await axios.request(options);
+    extendedCast.value = response?.data?.results?.cast
+    console.log(extendedCast.value);
+  } catch (error) {
+    console.log(error);
+  }
+}
+const cast_arr = computed(() =>{
+  const cast_arr = []
+
+  for (let i=0; i <= 5; i++ ){
+
+    const cast = extendedCast.value?.edges[i]?.node?.name?.nameText?.text
+    if (cast === null) break
+    cast_arr.push(cast)
+
+
+  }
+  let filterCastArr = cast_arr.filter(Boolean)
+  console.log(filterCastArr )
+  return filterCastArr
+})
+
 
 const genres_arr = computed(() =>{
   const genres_arr = []
@@ -52,7 +92,9 @@ const genres_arr = computed(() =>{
   console.log(filterGenresArr )
   return filterGenresArr
 })
+
 onMounted(getDetailCard)
+onMounted(getExtendedCast)
 
 </script>
 
@@ -80,13 +122,23 @@ onMounted(getDetailCard)
             <td id="right-col">{{detailFilmInfo?.releaseDate?.year}}</td>
           </tr>
           <tr>
-            <td id="left-col">Genre </td>
+            <td id="left-col">Genre</td>
             <td id="spacer"></td>
-            <td id="right-col" class="main-genre"><div class="genre" v-for="(genre,key) in genres_arr" :key="key">{{genre}}</div></td>
+            <td id="right-col" class="main-genre">
+              <div class="genre" v-for="(genre,key) in genres_arr" :key="key">{{ genre }}</div>
+            </td>
           </tr>
         </table>
+        <div class="main-cast">
+          <div class="left-col">Cast:</div>
+          <div id="spacer"></div>
+          <div id="right-col" class="cast">
+            <div class="castItem" v-for="(cast,key) in cast_arr" :key="key">{{ cast }}</div>
+        </div>
 
 
+
+        </div>
       </div>
 
     </div>
@@ -101,6 +153,8 @@ onMounted(getDetailCard)
 <style scoped lang="sass">
 .main
   margin-top: 65px
+  &-cast
+    margin-left: 40px
 .block
   display: flex
 
@@ -108,6 +162,8 @@ onMounted(getDetailCard)
   display: flex
   flex-direction: column
   padding-left: 50px
+  &-about
+    display: flex
 .image
   width: 400px
   height: 400px
@@ -119,6 +175,12 @@ onMounted(getDetailCard)
 
 .main-genre
   display: flex
+
+.cast
+  display: flex
+  flex-direction: column
+  &Item
+    padding-top: 10px
 
 .genre
   margin-left: 10px
