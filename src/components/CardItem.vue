@@ -22,12 +22,13 @@ const props = defineProps({
     type:Function,
     required:true
   },
+
 })
 </script>
 
 
 <template>
-  <RouterLink :filmName="filmName" :getFilm="getFilm"  :to="`/${filmSearch?.id}`">
+  <RouterLink :filmName="filmName" :getFilm="getFilm"   :to="`/${filmSearch?.id}`">
   <el-card class="box-card">
     <template #header>
       <div class="card-header">

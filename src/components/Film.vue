@@ -10,15 +10,9 @@ const route = useRoute();
 const detailFilmInfo = ref(null)
 
 const props = defineProps({
-  getFilm:{
-    type:Function,
-    required:true
-  },
   filmName:{
-    type:String,
-    required:true
-  }
-
+    type:String
+  },
 })
 
 const filmId = computed(() =>
@@ -64,7 +58,7 @@ onMounted(getDetailCard)
 
 <template>
 <div class="main">
-  <NavBar :filmName="filmName" :getFilm="getFilm"></NavBar>
+  <NavBar :filmName="filmName"></NavBar>
   <div class="block">
     <div :style="`background-image: url(${detailFilmInfo?.primaryImage?.url})`" class="image"></div>
     <div class="list">

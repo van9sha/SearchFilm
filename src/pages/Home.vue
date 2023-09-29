@@ -19,6 +19,8 @@ onMounted(rootStore.getFilm)
 <template>
   <NavBar :filmName="filmName"
           :getFilm="rootStore.getFilm"
+          :getStartedFilm="rootStore.getStartedFilm"
+          :filmInfo="filmInfo"
   />
   <div class="cardPlace">
       <CardItem
@@ -28,6 +30,7 @@ onMounted(rootStore.getFilm)
           :filmInfo="filmInfo"
           :filmName="filmName"
           :getFilm="rootStore.getFilm"
+
 
       />
   </div>

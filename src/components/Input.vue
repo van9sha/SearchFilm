@@ -15,7 +15,7 @@ const props = defineProps({
 <template>
   <el-input
       class="input"
-      @keyup.enter = 'getFilm;router.push({ path: "/Home" })'
+      @keyup.enter = 'getFilm(); router.push({ path: "/Home" })'
       placeholder="Please input"
 
   />

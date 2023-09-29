@@ -5,20 +5,23 @@ import Input from "@/components/Input.vue";
 import {storeToRefs} from "pinia";
 import {useRootStore} from "@/stores/root";
 import router from "@/router";
+import random from "@/pages/Random.vue";
 
 
 const rootStore = useRootStore();
+rootStore.getFilm()
+rootStore.getStartedFilm()
 const {filmName} = storeToRefs(rootStore);
 
 const props = defineProps({
-  getFilm:{
-    type:Function,
-    required:true
-  },
   filmName:{
     type:String,
     required:true
+  },
+  filmInfo:{
+    type:[Object,null]
   }
+
 
 })
 
@@ -26,6 +29,7 @@ const activeIndex = ref('1')
 const handleSelect = (key: string, keyPath: string[]) => {
   console.log(key, keyPath)
 }
+
 </script>
 
 <template>
@@ -37,21 +41,22 @@ const handleSelect = (key: string, keyPath: string[]) => {
       @select="handleSelect"
       style="position: fixed; width: 100%; top:0"
   >
-    <el-menu-item index="0" @click="router.push('/')"><img class="img" src='/src/assets/img/logo2.jpg'></el-menu-item>
+    <el-menu-item index="0" @click="router.push('/');rootStore.getStartedFilm()"><img class="img" src='/src/assets/img/logo2.jpg'></el-menu-item>
     <div class="flex-grow">
       <Input :filmName="filmName"
              v-model="rootStore.filmName"
-             :getFilm="getFilm"
+             :getFilm="rootStore.getFilm"
 
       />
     </div>
 
     <el-menu-item
         index="1"
-        @click="router.push('/')"
+        @click="router.push('/');rootStore.getStartedFilm()"
     >
-    Рандомный фильм
+      Рандомный фильм
     </el-menu-item>
+
     <el-sub-menu index="2">
       <template #title>Жанры</template>
       <el-menu-item index="2-1">item one</el-menu-item>
