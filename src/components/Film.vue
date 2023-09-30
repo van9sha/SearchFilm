@@ -9,6 +9,9 @@ const route = useRoute();
 
 const detailFilmInfo = ref(null)
 const extendedCast = ref(null)
+const creators = ref(null)
+const budget = ref(null)
+const de = ref(null)
 
 const props = defineProps({
   filmName:{
@@ -60,10 +63,59 @@ async function getExtendedCast(){
     console.log(error);
   }
 }
+
+
+//creators
+async function getCreators(){
+  const options = {
+    method: 'GET',
+    url: `https://moviesdatabase.p.rapidapi.com/titles/${filmId.value}`,
+    params: {
+      info: 'creators_directors_writers'
+    },
+    headers: {
+      'X-RapidAPI-Key': '69636914a6mshed648cbb5127466p1d9a31jsndd0ef5c5e50e',
+      'X-RapidAPI-Host': 'moviesdatabase.p.rapidapi.com'
+    }
+  };
+
+  try {
+    const response = await axios.request(options);
+    creators.value = response?.data?.results
+    console.log(creators.value);
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+//budget
+
+async function getBudget(){
+  const options = {
+    method: 'GET',
+    url: `https://moviesdatabase.p.rapidapi.com/titles/${filmId.value}`,
+    params: {
+      info: 'revenue_budget'
+    },
+    headers: {
+      'X-RapidAPI-Key': '69636914a6mshed648cbb5127466p1d9a31jsndd0ef5c5e50e',
+      'X-RapidAPI-Host': 'moviesdatabase.p.rapidapi.com'
+    }
+  };
+
+  try {
+    const response = await axios.request(options);
+    budget.value = response?.data?.results
+    console.log(budget.value);
+  } catch (error) {
+    console.log(error);
+  }
+}
+
 const cast_arr = computed(() =>{
   const cast_arr = []
 
-  for (let i=0; i <= 5; i++ ){
+  for (let i=0; i <= 10; i++ ){
 
     const cast = extendedCast.value?.edges[i]?.node?.name?.nameText?.text
     if (cast === null) break
@@ -74,6 +126,12 @@ const cast_arr = computed(() =>{
   let filterCastArr = cast_arr.filter(Boolean)
   console.log(filterCastArr )
   return filterCastArr
+})
+
+const budgetMoney = computed(() =>{
+  const budgetMoney = budget.value?.productionBudget?.budget?.amount
+  de.value = new Intl.NumberFormat(de).format(budgetMoney);
+  return de
 })
 
 
@@ -95,6 +153,8 @@ const genres_arr = computed(() =>{
 
 onMounted(getDetailCard)
 onMounted(getExtendedCast)
+onMounted(getCreators)
+onMounted(getBudget)
 
 </script>
 
@@ -126,22 +186,34 @@ onMounted(getExtendedCast)
             <td id="spacer"></td>
             <td id="right-col" class="main-genre">
               <div class="genre" v-for="(genre,key) in genres_arr" :key="key">{{ genre }}</div>
+
+            </td>
+          </tr>
+          <tr>
+            <td id="left-col">Director</td>
+            <td id="spacer"></td>
+            <td id="right-col" class="main-genre">
+              <div class="genre">{{ creators?.directors[0]?.credits[0]?.name?.nameText?.text}}</div>
+            </td>
+          </tr>
+          <tr>
+            <td id="left-col">Budget</td>
+            <td id="spacer"></td>
+            <td id="right-col" class="main-genre">
+              <div class="genre">{{ budgetMoney }}   {{ budget?.productionBudget?.budget?.currency }}</div>
+
             </td>
           </tr>
         </table>
-        <div class="main-cast">
-          <div class="left-col">Cast:</div>
-          <div id="spacer"></div>
-          <div id="right-col" class="cast">
-            <div class="castItem" v-for="(cast,key) in cast_arr" :key="key">{{ cast }}</div>
         </div>
-
-
-
-        </div>
-      </div>
-
     </div>
+    <div class="main-cast">
+      <div class="left-col">Cast:</div>
+      <div id="spacer"></div>
+      <div id="right-col" class="cast">
+        <div class="castItem" v-for="(cast,key) in cast_arr" :key="key">{{ cast }}</div>
+      </div>
+  </div>
   </div>
 </div>
 
@@ -154,7 +226,8 @@ onMounted(getExtendedCast)
 .main
   margin-top: 65px
   &-cast
-    margin-left: 40px
+    margin-right: 40px
+    margin-top: 50px
 .block
   display: flex
 
@@ -165,7 +238,7 @@ onMounted(getExtendedCast)
   &-about
     display: flex
 .image
-  width: 400px
+  width: 300px
   height: 400px
   background-repeat: no-repeat
   background-size: 100%
@@ -179,6 +252,7 @@ onMounted(getExtendedCast)
 .cast
   display: flex
   flex-direction: column
+  width: 200px
   &Item
     padding-top: 10px
 
@@ -189,7 +263,7 @@ onMounted(getExtendedCast)
 
 
 #maket
-    width: 60%
+    width: 80%
 
 #spacer
     width: 30px
