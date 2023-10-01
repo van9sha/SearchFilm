@@ -25,18 +25,11 @@ const props = defineProps({
   },
 })
 
-
-const getGenres = computed(() =>{
-
-  const genres = props.filmSearch?.genres?.genres
-  console.log({...genres})
-  return genres
-})
 </script>
 
 
 <template>
-  <RouterLink @click="getGenres" :filmName="filmName" :getFilm="getFilm"   :to="`/${filmSearch?.id}`">
+  <RouterLink  :filmName="filmName" :getFilm="getFilm"   :to="`/${filmSearch?.id}`">
     <el-card  class="box-card">
       <template #header>
         <div class="card-header">

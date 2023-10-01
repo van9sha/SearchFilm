@@ -5,11 +5,12 @@ import Input from "@/components/Input.vue";
 import {storeToRefs} from "pinia";
 import {useRootStore} from "@/stores/root";
 import router from "@/router";
+import {Search} from "@element-plus/icons-vue";
 
 
 
 const rootStore = useRootStore();
-const {filmName,genreCase} = storeToRefs(rootStore);
+const {filmName} = storeToRefs(rootStore);
 
 const props = defineProps({
   filmName:{
@@ -46,6 +47,7 @@ const handleSelect = (key: string, keyPath: string[]) => {
              :getFilm="rootStore.getFilm"
 
       />
+      <el-button class="btn-input" :icon="Search" circle  @click="rootStore.getFilm(); router.push({ path: '/Home' })"/>
     </div>
 
     <el-menu-item
@@ -83,6 +85,13 @@ const handleSelect = (key: string, keyPath: string[]) => {
 
 .flex-grow
   flex-grow: 1
+  display: flex
+
+.btn-input
+  width: 40px
+  height: 40px
+  translate: -135px
+  margin-top: 12.5px
 
 .img
   width: 60px

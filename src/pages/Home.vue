@@ -9,7 +9,7 @@ import {storeToRefs} from "pinia";
 import CardItem from "@/components/CardItem.vue";
 
 const rootStore = useRootStore();
-const {filmInfo,filmName,filmsSearch} = storeToRefs(rootStore);
+const {filmInfo,filmName} = storeToRefs(rootStore);
 
 
 
