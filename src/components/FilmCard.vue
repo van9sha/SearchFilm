@@ -5,13 +5,19 @@ import axios from "axios";
 import {computed, onMounted, ref} from "vue";
 import {useRoute} from "vue-router";
 import NavBar from "@/components/NavBar.vue";
+import {useRootStore} from "@/stores/root";
+import {storeToRefs} from "pinia";
 const route = useRoute();
+const rootStore = useRootStore();
+const {filmInfo,filmName} = storeToRefs(rootStore);
 
 const detailFilmInfo = ref(null)
 const extendedCast = ref(null)
 const creators = ref(null)
 const budget = ref(null)
 const de = ref(null)
+
+
 
 const props = defineProps({
   filmName:{
@@ -58,7 +64,7 @@ async function getExtendedCast(){
   try {
     const response = await axios.request(options);
     extendedCast.value = response?.data?.results?.cast
-    console.log(extendedCast.value);
+
   } catch (error) {
     console.log(error);
   }
@@ -82,7 +88,7 @@ async function getCreators(){
   try {
     const response = await axios.request(options);
     creators.value = response?.data?.results
-    console.log(creators.value);
+
   } catch (error) {
     console.log(error);
   }
@@ -106,7 +112,7 @@ async function getBudget(){
   try {
     const response = await axios.request(options);
     budget.value = response?.data?.results
-    console.log(budget.value);
+
   } catch (error) {
     console.log(error);
   }
@@ -124,7 +130,7 @@ const cast_arr = computed(() =>{
 
   }
   let filterCastArr = cast_arr.filter(Boolean)
-  console.log(filterCastArr )
+
   return filterCastArr
 })
 
@@ -147,9 +153,11 @@ const genres_arr = computed(() =>{
 
   }
   let filterGenresArr = genres_arr.filter(Boolean)
-  console.log(filterGenresArr )
+
   return filterGenresArr
 })
+
+
 
 onMounted(getDetailCard)
 onMounted(getExtendedCast)
@@ -160,7 +168,10 @@ onMounted(getBudget)
 
 <template>
 <div class="main">
-  <NavBar :filmName="filmName"></NavBar>
+  <NavBar :filmName="filmName"
+          :getFilm="rootStore.getFilm"
+          :getStartedFilm="rootStore.getStartedFilm"
+          :filmInfo="filmInfo"/>
   <div class="block">
     <div :style="`background-image: url(${detailFilmInfo?.primaryImage?.url})`" class="image"></div>
     <div class="list">
@@ -213,6 +224,7 @@ onMounted(getBudget)
       <div id="right-col" class="cast">
         <div class="castItem" v-for="(cast,key) in cast_arr" :key="key">{{ cast }}</div>
       </div>
+
   </div>
   </div>
 </div>

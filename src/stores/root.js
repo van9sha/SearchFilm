@@ -8,7 +8,8 @@ export const useRootStore = defineStore('root', {
     state: () => ({
         filmInfo: [],
         filmName: '',
-        filmsSearch:[]
+        filmsSearch:[],
+        genreCase:shallowRef()
     }),
     actions: {
         async getFilm() {
@@ -20,7 +21,8 @@ export const useRootStore = defineStore('root', {
                     titleType: 'movie',
                     limit: '20',
                     sort: 'year.decr',
-                    list: 'most_pop_movies'
+                    list: 'most_pop_movies',
+                    info: 'base_info'
 
                 },
                 headers: {
@@ -42,8 +44,11 @@ export const useRootStore = defineStore('root', {
                 method: 'GET',
                 url: 'https://moviesdatabase.p.rapidapi.com/titles/random',
                 params: {
+                    genre: this.genreCase,
+                    info: 'base_info',
                     limit: '12',
-                    list: 'most_pop_movies'
+                    list: 'most_pop_movies',
+
                 },
                 headers: {
                     'X-RapidAPI-Key': '69636914a6mshed648cbb5127466p1d9a31jsndd0ef5c5e50e',

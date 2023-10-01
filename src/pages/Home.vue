@@ -9,9 +9,9 @@ import {storeToRefs} from "pinia";
 import CardItem from "@/components/CardItem.vue";
 
 const rootStore = useRootStore();
-rootStore.getFilm()
-rootStore.getStartedFilm()
 const {filmInfo,filmName,filmsSearch} = storeToRefs(rootStore);
+
+
 
 onMounted(rootStore.getFilm)
 </script>
@@ -34,6 +34,7 @@ onMounted(rootStore.getFilm)
 
       />
   </div>
+
 </template>
 
 <style lang="sass" scoped>

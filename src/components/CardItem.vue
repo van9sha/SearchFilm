@@ -1,5 +1,6 @@
 <script setup>
 import {useRoute} from "vue-router";
+import {computed} from "vue";
 
 const route = useRoute();
 
@@ -22,13 +23,30 @@ const props = defineProps({
     type:Function,
     required:true
   },
+})
 
+
+const getGenres = computed(() =>{
+
+  const genres = props.filmSearch?.genres?.genres
+  console.log({...genres})
+  return genres
 })
 </script>
 
 
 <template>
-  <RouterLink :filmName="filmName" :getFilm="getFilm"   :to="`/${filmSearch?.id}`">
+  <RouterLink @click="getGenres" :filmName="filmName" :getFilm="getFilm"   :to="`/${filmSearch?.id}`">
+    <el-card  class="box-card">
+      <template #header>
+        <div class="card-header">
+          <div :style="`background-image: url(${filmSearch?.primaryImage?.url})`" class="image"></div>
+        </div>
+      </template>
+      <h5>{{ filmSearch?.originalTitleText?.text }}</h5>
+    </el-card>
+  </RouterLink>
+<!--  <RouterLink :filmName="filmName" :getFilm="getFilm"   :to="`/${filmSearch?.id}`">
   <el-card class="box-card">
     <template #header>
       <div class="card-header">
@@ -37,7 +55,9 @@ const props = defineProps({
     </template>
     <h5>{{ filmSearch?.originalTitleText?.text }}</h5>
   </el-card>
-  </RouterLink>
+  </RouterLink>-->
+
+
 </template>
 
 <style lang="sass" scoped>
