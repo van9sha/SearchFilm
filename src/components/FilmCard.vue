@@ -177,8 +177,13 @@ onMounted(getBudget)
     <div class="list">
       <div class="title">
         <h1>{{detailFilmInfo?.titleText?.text}}</h1>
+        <div class="rating-main">
+          <div class='rating-main-count'>{{ detailFilmInfo?.ratingsSummary?.aggregateRating }}/10  IMDb</div>
+          <div class='rating-main-vote'>{{ detailFilmInfo?.ratingsSummary?.voteCount }}  votes</div>
+        </div>
       </div>
       <h1>About</h1>
+
 
       <div class="list-about">
         <table cellspacing="0" id="maket">
@@ -238,7 +243,6 @@ onMounted(getBudget)
 .main
   margin-top: 65px
   &-cast
-    margin-right: 40px
     margin-top: 50px
 .block
   display: flex
@@ -250,13 +254,27 @@ onMounted(getBudget)
   &-about
     display: flex
 .image
-  width: 300px
-  height: 400px
+  width: 25%
+  height: 600px
   background-repeat: no-repeat
   background-size: 100%
 
 .title
   margin-top: -20px
+
+.rating-main
+  flex-direction: column
+  display: flex
+  width: 200px
+  &-count
+    width: 200px
+    align-items: center
+    font-size: 25px
+  &-vote
+    width: 200px
+    padding-top: 5px
+    font-size: 15px
+
 
 .main-genre
   display: flex

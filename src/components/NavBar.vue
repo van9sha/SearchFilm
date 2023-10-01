@@ -52,7 +52,7 @@ const handleSelect = (key: string, keyPath: string[]) => {
         index="1"
         @click="router.push('/'); rootStore.genreCase=undefined;rootStore.getStartedFilm()"
     >
-      Рандомный фильм
+      Рандомные фильмы
     </el-menu-item>
 
     <el-sub-menu index="2"
