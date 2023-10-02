@@ -37,7 +37,7 @@ const props = defineProps({
             <div :style="`background-image: url(${filmSearch?.primaryImage?.url})`" class="image"></div>
           </div>
         </template>
-        <h5>{{ filmSearch?.originalTitleText?.text }}</h5>
+        <h5 class="text-overflow">{{ filmSearch?.originalTitleText?.text }}</h5>
       </el-card>
     </RouterLink>
   </div>
@@ -65,7 +65,10 @@ const props = defineProps({
   margin-top: 10px
   margin-left: 5px
 
-
+.text-overflow
+  white-space: nowrap
+  overflow: hidden
+  text-overflow: ellipsis
 
 .image
   width: 160px

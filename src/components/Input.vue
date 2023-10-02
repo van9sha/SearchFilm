@@ -17,10 +17,11 @@ const props = defineProps({
 
 
     <el-input
+
         class="input"
         @keyup.enter = 'getFilm(); router.push({ path: "/Home" })'
         placeholder="Search film"
-
+        style="font-family: Hahmlet,serif"
     />
 
 
@@ -34,6 +35,7 @@ const props = defineProps({
   padding: 10px 90px 5px 30px
   height: 60px
   font-size: 24px
+
 
 
 

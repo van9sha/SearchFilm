@@ -33,12 +33,13 @@ const handleSelect = (key: string, keyPath: string[]) => {
 
 <template>
   <el-menu
+
       :default-active="activeIndex"
       class="el-menu-demo"
       mode="horizontal"
       :ellipsis="false"
       @select="handleSelect"
-      style="position: fixed; width: 100%; top:0"
+      style="position: fixed; width: 100%; top:0;font-family: Hahmlet,serif"
   >
     <el-menu-item index="0" @click="router.push('/');rootStore.genreCase=undefined;rootStore.getStartedFilm()"><img class="img" src='/src/assets/img/logo2.jpg'></el-menu-item>
     <div class="flex-grow">
@@ -54,7 +55,7 @@ const handleSelect = (key: string, keyPath: string[]) => {
         index="1"
         @click="router.push('/'); rootStore.genreCase=undefined;rootStore.getStartedFilm()"
     >
-      Рандомные фильмы
+      Random films
     </el-menu-item>
 
     <el-sub-menu index="2"
@@ -63,7 +64,7 @@ const handleSelect = (key: string, keyPath: string[]) => {
                  :getStartedFilm="rootStore.getStartedFilm"
                  :filmInfo="filmInfo"
     >
-      <template #title>Жанры</template>
+      <template #title>Genres</template>
       <el-menu-item index="2-1" @click="router.push('/film-action'); rootStore.genreCase='Action';rootStore.getStartedFilm();">Action</el-menu-item>
       <el-menu-item index="2-2" @click="router.push('/film-adventure'); rootStore.genreCase='Adventure';rootStore.getStartedFilm()">Adventure</el-menu-item>
       <el-menu-item index="2-3" @click="router.push('/film-biography'); rootStore.genreCase='Biography';rootStore.getStartedFilm()">Biography</el-menu-item>

@@ -249,7 +249,7 @@ onMounted(getBudget)
 
 .block
   display: flex
-  background-color: #379683
+  background-color: #282828
   color: #FBEEC1
 
 
