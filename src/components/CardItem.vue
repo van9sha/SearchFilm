@@ -29,16 +29,19 @@ const props = defineProps({
 
 
 <template>
-  <RouterLink  :filmName="filmName" :getFilm="getFilm"   :to="`/${filmSearch?.id}`">
-    <el-card  class="box-card">
-      <template #header>
-        <div class="card-header">
-          <div :style="`background-image: url(${filmSearch?.primaryImage?.url})`" class="image"></div>
-        </div>
-      </template>
-      <h5>{{ filmSearch?.originalTitleText?.text }}</h5>
-    </el-card>
-  </RouterLink>
+  <div class="main">
+    <RouterLink  :filmName="filmName" :getFilm="getFilm"   :to="`/${filmSearch?.id}`">
+      <el-card  class="box-card">
+        <template #header>
+          <div class="card-header">
+            <div :style="`background-image: url(${filmSearch?.primaryImage?.url})`" class="image"></div>
+          </div>
+        </template>
+        <h5>{{ filmSearch?.originalTitleText?.text }}</h5>
+      </el-card>
+    </RouterLink>
+  </div>
+
 <!--  <RouterLink :filmName="filmName" :getFilm="getFilm"   :to="`/${filmSearch?.id}`">
   <el-card class="box-card">
     <template #header>
@@ -54,10 +57,14 @@ const props = defineProps({
 </template>
 
 <style lang="sass" scoped>
+@import "../assets/styles/main.sass"
+
+
 .box-card
   width: 200px
   margin-top: 10px
   margin-left: 5px
+
 
 
 .image

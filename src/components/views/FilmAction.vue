@@ -37,9 +37,6 @@ onMounted(rootStore.getStartedFilm)
 </template>
 
 <style scoped lang="sass">
-.cardPlace
-  display: flex
-  flex-wrap: wrap
-  justify-content: center
-  margin-top: 65px
+@import "../../assets/styles/main.sass"
+
 </style>

@@ -240,12 +240,20 @@ onMounted(getBudget)
 </template>
 
 <style scoped lang="sass">
+@import "../assets/styles/main.sass"
+
 .main
   margin-top: 65px
   &-cast
     margin-top: 50px
+
 .block
   display: flex
+  background-color: #379683
+  color: #FBEEC1
+
+
+
 
 .list
   display: flex
