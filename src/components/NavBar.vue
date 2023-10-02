@@ -65,17 +65,20 @@ const handleSelect = (key: string, keyPath: string[]) => {
                  :filmInfo="filmInfo"
     >
       <template #title>Genres</template>
-      <el-menu-item index="2-1" @click="router.push('/film-action'); rootStore.genreCase='Action';rootStore.getStartedFilm();">Action</el-menu-item>
-      <el-menu-item index="2-2" @click="router.push('/film-adventure'); rootStore.genreCase='Adventure';rootStore.getStartedFilm()">Adventure</el-menu-item>
-      <el-menu-item index="2-3" @click="router.push('/film-biography'); rootStore.genreCase='Biography';rootStore.getStartedFilm()">Biography</el-menu-item>
-      <el-menu-item index="2-4" @click="router.push('/film-comedy'); rootStore.genreCase='Comedy';rootStore.getStartedFilm()">Comedy</el-menu-item>
-      <el-menu-item index="2-5" @click="router.push('/film-documentary');rootStore.genreCase='Documentary';rootStore.getStartedFilm()">Documentary</el-menu-item>
-      <el-menu-item index="2-6" @click="router.push('/film-drama'); rootStore.genreCase='Drama';rootStore.getStartedFilm()">Drama</el-menu-item>
-      <el-menu-item index="2-7" @click="router.push('/film-fantasy'); rootStore.genreCase='Fantasy';rootStore.getStartedFilm()">Fantasy</el-menu-item>
-      <el-menu-item index="2-8" @click="router.push('/film-history'); rootStore.genreCase='History';rootStore.getStartedFilm()">History</el-menu-item>
-      <el-menu-item index="2-9" @click="router.push('/film-horror'); rootStore.genreCase='Horror';rootStore.getStartedFilm()">Horror</el-menu-item>
-      <el-menu-item index="2-10" @click="router.push('/film-sport'); rootStore.genreCase='Sport';rootStore.getStartedFilm()">Sport</el-menu-item>
-      <el-menu-item index="2-11" @click="router.push('/film-thriller'); rootStore.genreCase='Thriller';rootStore.getStartedFilm()">Thriller</el-menu-item>
+      <div class="genres-title">
+        <el-menu-item index="2-1" @click="router.push('/film-action'); rootStore.genreCase='Action';rootStore.getStartedFilm();">Action</el-menu-item>
+        <el-menu-item index="2-2" @click="router.push('/film-adventure'); rootStore.genreCase='Adventure';rootStore.getStartedFilm()">Adventure</el-menu-item>
+        <el-menu-item index="2-3" @click="router.push('/film-biography'); rootStore.genreCase='Biography';rootStore.getStartedFilm()">Biography</el-menu-item>
+        <el-menu-item index="2-4" @click="router.push('/film-comedy'); rootStore.genreCase='Comedy';rootStore.getStartedFilm()">Comedy</el-menu-item>
+        <el-menu-item index="2-5" @click="router.push('/film-documentary');rootStore.genreCase='Documentary';rootStore.getStartedFilm()">Documentary</el-menu-item>
+        <el-menu-item index="2-6" @click="router.push('/film-drama'); rootStore.genreCase='Drama';rootStore.getStartedFilm()">Drama</el-menu-item>
+        <el-menu-item index="2-7" @click="router.push('/film-fantasy'); rootStore.genreCase='Fantasy';rootStore.getStartedFilm()">Fantasy</el-menu-item>
+        <el-menu-item index="2-8" @click="router.push('/film-history'); rootStore.genreCase='History';rootStore.getStartedFilm()">History</el-menu-item>
+        <el-menu-item index="2-9" @click="router.push('/film-horror'); rootStore.genreCase='Horror';rootStore.getStartedFilm()">Horror</el-menu-item>
+        <el-menu-item index="2-10" @click="router.push('/film-sport'); rootStore.genreCase='Sport';rootStore.getStartedFilm()">Sport</el-menu-item>
+        <el-menu-item index="2-11" @click="router.push('/film-thriller'); rootStore.genreCase='Thriller';rootStore.getStartedFilm()">Thriller</el-menu-item>
+
+      </div>
 
 
     </el-sub-menu>
@@ -88,6 +91,8 @@ const handleSelect = (key: string, keyPath: string[]) => {
   flex-grow: 1
   display: flex
 
+.genres-title
+ font-family: Hahmlet,serif
 
 .btn-input
   width: 40px

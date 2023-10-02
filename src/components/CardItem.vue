@@ -65,6 +65,7 @@ const props = defineProps({
   margin-top: 10px
   margin-left: 5px
 
+
 .text-overflow
   white-space: nowrap
   overflow: hidden
