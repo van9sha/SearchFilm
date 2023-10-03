@@ -4,6 +4,7 @@ import Film from '@/components/FilmCard.vue'
 import {ROUTES_PATHS} from "@/constants/router";
 import Random from "@/pages/Random.vue";
 import FilmAction from "@/components/views/FilmAction.vue";
+import TopRaiting from "@/components/views/TopRaiting.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -78,6 +79,11 @@ const router = createRouter({
       name: ROUTES_PATHS.THRILLER,
       component: FilmAction
     },
+    {
+      path: ROUTES_PATHS.TOP250,
+      name: ROUTES_PATHS.TOP250,
+      component: TopRaiting
+    }
   ]
 })
 

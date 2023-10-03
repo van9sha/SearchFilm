@@ -12,6 +12,7 @@ export const ROUTES_PATHS = {
     FANTASY:'/film-fantasy',
     HORROR:'/film-horror',
     SPORT:'/film-sport',
-    THRILLER:'/film-thriller'
+    THRILLER:'/film-thriller',
+    TOP250:'/film-250',
 
 }

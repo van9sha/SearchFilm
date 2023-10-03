@@ -9,7 +9,9 @@ export const useRootStore = defineStore('root', {
         filmInfo: [],
         filmName: '',
         filmsSearch:[],
-        genreCase:shallowRef()
+        genreCase:shallowRef(),
+        topFilms250:[],
+        list:shallowRef('most_pop_movies'),
     }),
     actions: {
         async getFilm() {
@@ -47,7 +49,7 @@ export const useRootStore = defineStore('root', {
                     genre: this.genreCase,
                     info: 'base_info',
                     limit: '12',
-                    list: 'most_pop_movies',
+                    list: this.list,
 
                 },
                 headers: {
@@ -63,7 +65,7 @@ export const useRootStore = defineStore('root', {
             } catch (error) {
                 console.log(error);
             }
-        }
+        },
 
     }
 })
