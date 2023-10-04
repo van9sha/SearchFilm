@@ -7,6 +7,7 @@ import {useRoute} from "vue-router";
 import NavBar from "@/components/NavBar.vue";
 import {useRootStore} from "@/stores/root";
 import {storeToRefs} from "pinia";
+
 const route = useRoute();
 const rootStore = useRootStore();
 const {filmInfo,filmName} = storeToRefs(rootStore);
@@ -27,79 +28,46 @@ const props = defineProps({
 
 const filmId = computed(() =>
     route.path.split('/').pop());
-async function getDetailCard() {
-  const options = {
-    method: 'GET',
-    url: `https://moviesdatabase.p.rapidapi.com/titles/${filmId.value}`,
+
+
+function getDetailCard() {
+  return axios.get(`https://moviesdatabase.p.rapidapi.com/titles/${filmId.value}`,{
     params: {info: 'base_info'},
     headers: {
       'X-RapidAPI-Key': '69636914a6mshed648cbb5127466p1d9a31jsndd0ef5c5e50e',
       'X-RapidAPI-Host': 'moviesdatabase.p.rapidapi.com'
     }
-  };
-
-  try {
-    const response = await axios.request(options);
-    detailFilmInfo.value = response?.data.results
-  } catch (error) {
-    console.log(error);
-  }
+  })
 }
-
 
 //Cast
-async function getExtendedCast(){
-  const options = {
-    method: 'GET',
-    url: `https://moviesdatabase.p.rapidapi.com/titles/${filmId.value}`,
-    params: {
-      info: 'extendedCast'
-    },
-    headers: {
-      'X-RapidAPI-Key': '69636914a6mshed648cbb5127466p1d9a31jsndd0ef5c5e50e',
-      'X-RapidAPI-Host': 'moviesdatabase.p.rapidapi.com'
-    }
-  };
-
-  try {
-    const response = await axios.request(options);
-    extendedCast.value = response?.data?.results?.cast
-
-  } catch (error) {
-    console.log(error);
-  }
+ function getExtendedCast(){
+   return axios.get(`https://moviesdatabase.p.rapidapi.com/titles/${filmId.value}`,{
+     method: 'GET',
+     params: {
+       info: 'extendedCast'
+     },
+     headers: {
+       'X-RapidAPI-Key': '69636914a6mshed648cbb5127466p1d9a31jsndd0ef5c5e50e',
+       'X-RapidAPI-Host': 'moviesdatabase.p.rapidapi.com'
+     }
+   })
 }
-
-
 //creators
-async function getCreators(){
-  const options = {
-    method: 'GET',
-    url: `https://moviesdatabase.p.rapidapi.com/titles/${filmId.value}`,
-    params: {
-      info: 'creators_directors_writers'
-    },
-    headers: {
-      'X-RapidAPI-Key': '69636914a6mshed648cbb5127466p1d9a31jsndd0ef5c5e50e',
-      'X-RapidAPI-Host': 'moviesdatabase.p.rapidapi.com'
-    }
-  };
-
-  try {
-    const response = await axios.request(options);
-    creators.value = response?.data?.results
-
-  } catch (error) {
-    console.log(error);
-  }
+ function getCreators(){
+   return axios.get(`https://moviesdatabase.p.rapidapi.com/titles/${filmId.value}`,{
+     params: {
+       info: 'creators_directors_writers'
+     },
+     headers: {
+       'X-RapidAPI-Key': '69636914a6mshed648cbb5127466p1d9a31jsndd0ef5c5e50e',
+       'X-RapidAPI-Host': 'moviesdatabase.p.rapidapi.com'
+     }
+   })
 }
-
 //budget
-
 async function getBudget(){
-  const options = {
-    method: 'GET',
-    url: `https://moviesdatabase.p.rapidapi.com/titles/${filmId.value}`,
+  return axios.get(`https://moviesdatabase.p.rapidapi.com/titles/${filmId.value}`,{
     params: {
       info: 'revenue_budget'
     },
@@ -107,15 +75,19 @@ async function getBudget(){
       'X-RapidAPI-Key': '69636914a6mshed648cbb5127466p1d9a31jsndd0ef5c5e50e',
       'X-RapidAPI-Host': 'moviesdatabase.p.rapidapi.com'
     }
-  };
+  })
+}
 
-  try {
-    const response = await axios.request(options);
-    budget.value = response?.data?.results
 
-  } catch (error) {
-    console.log(error);
-  }
+async function getFullInfo(){
+  Promise.all([getExtendedCast(), getCreators(),getDetailCard(),getBudget()])
+      .then(function (results) {
+        extendedCast.value = results[0]?.data?.results;
+        creators.value = results[1]?.data?.results;
+        detailFilmInfo.value = results[2]?.data?.results;
+        budget.value = results[3]?.data?.results;
+      });
+
 }
 
 const cast_arr = computed(() =>{
@@ -123,7 +95,7 @@ const cast_arr = computed(() =>{
 
   for (let i=0; i <= 10; i++ ){
 
-    const cast = extendedCast.value?.edges[i]?.node?.name?.nameText?.text
+    const cast = extendedCast.value?.cast?.edges[i]?.node?.name?.nameText?.text
     if (cast === null) break
     cast_arr.push(cast)
 
@@ -158,11 +130,8 @@ const genres_arr = computed(() =>{
 })
 
 
+onMounted(getFullInfo)
 
-onMounted(getDetailCard)
-onMounted(getExtendedCast)
-onMounted(getCreators)
-onMounted(getBudget)
 
 </script>
 
@@ -262,7 +231,7 @@ onMounted(getBudget)
   &-about
     display: flex
 .image
-  width: 25%
+  width: 50%
   height: 600px
   background-repeat: no-repeat
   background-size: 100%

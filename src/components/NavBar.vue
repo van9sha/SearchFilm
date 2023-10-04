@@ -53,7 +53,7 @@ const handleSelect = (key: string, keyPath: string[]) => {
 
     <el-menu-item
         index="1"
-        @click="router.push('/'); rootStore.genreCase=undefined;rootStore.list='most_pop_movies';rootStore.getStartedFilm()"
+        @click="router.push('/'); rootStore.genreCase=undefined;rootStore.list='most_pop_movies'"
     >
       Random films
     </el-menu-item>
@@ -84,7 +84,7 @@ const handleSelect = (key: string, keyPath: string[]) => {
 
     <el-menu-item
       index="3"
-      @click="router.push('/film-250');rootStore.genreCase=undefined;rootStore.list='top_rated_english_250';rootStore.getStartedFilm();"
+      @click="router.push('/film-250');rootStore.genreCase=undefined;rootStore.list='top_rated_english_250';"
   >
     TOP 250
   </el-menu-item>

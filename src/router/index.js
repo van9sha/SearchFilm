@@ -1,10 +1,15 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import Home from "@/pages/Home.vue";
+
 import Film from '@/components/FilmCard.vue'
 import {ROUTES_PATHS} from "@/constants/router";
 import Random from "@/pages/Random.vue";
+import Home from "@/pages/Home.vue";
 import FilmAction from "@/components/views/FilmAction.vue";
 import TopRaiting from "@/components/views/TopRaiting.vue";
+
+
+
+
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),

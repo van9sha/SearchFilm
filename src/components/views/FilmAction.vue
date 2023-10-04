@@ -12,7 +12,7 @@ const {filmName,filmInfo} = storeToRefs(rootStore);
 
 
 
-onMounted(rootStore.getStartedFilm)
+
 </script>
 
 <template>

@@ -30,7 +30,8 @@ const props = defineProps({
 
 <template>
   <div class="main">
-    <RouterLink  :filmName="filmName" :getFilm="getFilm"   :to="`/${filmSearch?.id}`">
+
+      <RouterLink  :filmName="filmName" :getFilm="getFilm"   :to="`/${filmSearch?.id}`">
       <el-card  class="box-card">
         <template #header>
           <div class="card-header">
@@ -40,6 +41,8 @@ const props = defineProps({
         <h5 class="text-overflow">{{ filmSearch?.originalTitleText?.text }}</h5>
       </el-card>
     </RouterLink>
+    
+
   </div>
 
 <!--  <RouterLink :filmName="filmName" :getFilm="getFilm"   :to="`/${filmSearch?.id}`">
