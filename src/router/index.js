@@ -6,6 +6,7 @@ import Random from "@/pages/Random.vue";
 import Home from "@/pages/Home.vue";
 import FilmAction from "@/components/views/FilmAction.vue";
 import TopRaiting from "@/components/views/TopRaiting.vue";
+import StartPage from "@/pages/StartPage.vue";
 
 
 
@@ -18,6 +19,11 @@ const router = createRouter({
       path: ROUTES_PATHS.HOME,
       name: ROUTES_PATHS.HOME,
       component: Home
+    },
+    {
+      path: ROUTES_PATHS.START,
+      name: ROUTES_PATHS.START,
+      component: StartPage
     },
     {
       path: ROUTES_PATHS.FILM,

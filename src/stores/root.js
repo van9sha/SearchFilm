@@ -9,7 +9,7 @@ export const useRootStore = defineStore('root', {
         filmInfo: [],
         filmName: '',
         filmsSearch:[],
-        genreCase:shallowRef(),
+        genreCase:'',
         topFilms250:[],
         list:shallowRef('most_pop_movies'),
     }),
@@ -61,7 +61,7 @@ export const useRootStore = defineStore('root', {
             try {
                 const response = await axios.request(options);
                 this.filmInfo = response?.data?.results
-                console.log(this.filmInfo);
+                console.log(response);
             } catch (error) {
                 console.log(error);
             }

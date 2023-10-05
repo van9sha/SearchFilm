@@ -124,9 +124,7 @@ const genres_arr = computed(() =>{
 
 
   }
-  let filterGenresArr = genres_arr.filter(Boolean)
-
-  return filterGenresArr
+  return genres_arr.filter(Boolean)
 })
 
 
@@ -281,7 +279,6 @@ TD
 TD#left-col
     width: 200px
 
-TD#right-col
 
 
 
