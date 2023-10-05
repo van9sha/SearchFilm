@@ -9,7 +9,6 @@ import {onMounted} from "vue";
 const rootStore = useRootStore();
 const {filmName,filmInfo} = storeToRefs(rootStore);
 
-onMounted(rootStore.getStartedFilm)
 </script>
 
 <template>

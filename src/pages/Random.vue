@@ -11,6 +11,8 @@ const rootStore = useRootStore();
 const {filmInfo,filmName} = storeToRefs(rootStore);
 
 
+
+
 onMounted(rootStore.getStartedFilm)
 </script>
 

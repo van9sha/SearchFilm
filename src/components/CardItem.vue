@@ -41,7 +41,6 @@ const props = defineProps({
         <h5 class="text-overflow">{{ filmSearch?.originalTitleText?.text }}</h5>
       </el-card>
     </RouterLink>
-    
 
   </div>
 

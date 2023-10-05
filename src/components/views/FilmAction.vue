@@ -12,7 +12,6 @@ const {filmName,filmInfo} = storeToRefs(rootStore);
 
 
 
-
 </script>
 
 <template>

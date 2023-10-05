@@ -1,7 +1,8 @@
 export const ROUTES_PATHS = {
+    START: '/',
     HOME: '/Home',
     FILM:'/:rid',
-    RANDOM: '/',
+    RANDOM: '/Random',
     ACTION: '/film-action',
     DOCUMENTARY: '/film-documentary',
     COMEDY:'/film-comedy',
