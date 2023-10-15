@@ -96,8 +96,9 @@ onMounted(getTitles)
   align-items: center
   margin-top: 15px
   justify-content: center
+  padding-bottom: 15px
   &-number
-    padding: 10px
+    padding: 15px
     border: 1px solid #edeea4
     display: flex
     align-items: center
@@ -109,7 +110,7 @@ onMounted(getTitles)
 
 .current_page
   border: 2px solid #edeea4
-  padding: 10px
+  padding: 15px
   display: flex
   align-items: center
   justify-content: center

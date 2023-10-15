@@ -140,7 +140,10 @@ onMounted(getFullInfo)
           :getStartedFilm="rootStore.getStartedFilm"
           :filmInfo="filmInfo"/>
   <div class="block">
-    <div :style="`background-image: url(${detailFilmInfo?.primaryImage?.url})`" class="image"></div>
+    <div class="img">
+      <div :style="`background-image: url(${detailFilmInfo?.primaryImage?.url})`" class="image"></div>
+    </div>
+
     <div class="list">
       <div class="title">
         <h1>{{detailFilmInfo?.titleText?.text}}</h1>
@@ -150,6 +153,7 @@ onMounted(getFullInfo)
         </div>
       </div>
       <h1>About</h1>
+
 
 
       <div class="list-about">
@@ -187,11 +191,19 @@ onMounted(getFullInfo)
 
             </td>
           </tr>
+          <tr>
+            <td id="left-col">Run time</td>
+            <td id="spacer"></td>
+            <td id="right-col" class="main-genre">
+              <div class="genre">{{ detailFilmInfo?.runtime?.seconds / 60 }} min</div>
+
+            </td>
+          </tr>
         </table>
         </div>
     </div>
     <div class="main-cast">
-      <div class="left-col">Cast:</div>
+      <div class="left-col" style="padding-left: 15px">Cast:</div>
       <div id="spacer"></div>
       <div id="right-col" class="cast">
         <div class="castItem" v-for="(cast,key) in cast_arr" :key="key">{{ cast }}</div>
@@ -218,6 +230,8 @@ onMounted(getFullInfo)
   display: flex
   background-color: #282828
   color: #FBEEC1
+  padding-bottom: 80px
+
 
 
 
@@ -226,13 +240,23 @@ onMounted(getFullInfo)
   display: flex
   flex-direction: column
   padding-left: 50px
+
   &-about
     display: flex
-.image
+
+.img
+  display: flex
   width: 50%
-  height: 600px
+  padding: 50px
+
+
+
+.image
+  width: 100%
+  height: 100%
   background-repeat: no-repeat
-  background-size: 100%
+  background-size: 75%
+
 
 .title
   margin-top: -20px
@@ -258,8 +282,10 @@ onMounted(getFullInfo)
   display: flex
   flex-direction: column
   width: 200px
+  padding-left: 15px
   &Item
     padding-top: 10px
+
 
 .genre
   margin-left: 10px
