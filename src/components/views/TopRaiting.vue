@@ -4,10 +4,14 @@ import CardItem from "@/components/CardItem.vue";
 import NavBar from "@/components/NavBar.vue";
 import {useRootStore} from "@/stores/root";
 import {storeToRefs} from "pinia";
-import {onMounted} from "vue";
+import {onMounted, ref} from "vue";
 
 const rootStore = useRootStore();
 const {filmName,filmInfo} = storeToRefs(rootStore);
+
+
+
+const pageNumber = ref(1)
 
 </script>
 
@@ -27,7 +31,23 @@ const {filmName,filmInfo} = storeToRefs(rootStore);
           :getFilm="rootStore.getFilm"
 
       />
+
+
+      <div class="page-wrapper">
+        <div class='page-wrapper-number'
+             v-for="page in 10"
+             :key="page"
+             :class="{
+           'current_page': page === pageNumber
+         }"
+             @click="pageNumber = page; rootStore.getStartedFilm()"
+        >
+          <strong>{{ page }}</strong>
+        </div>
+      </div>
     </div>
+
+
 </template>
 
 <style scoped lang="sass">

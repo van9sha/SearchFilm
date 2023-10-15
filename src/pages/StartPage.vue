@@ -91,33 +91,6 @@ onMounted(getTitles)
 <style scoped lang="sass">
 @import "../assets/styles/main.sass"
 
-.page-wrapper
-  display: flex
-  align-items: center
-  margin-top: 15px
-  justify-content: center
-  padding-bottom: 15px
-  &-number
-    padding: 15px
-    border: 1px solid #edeea4
-    display: flex
-    align-items: center
-    justify-content: center
-    cursor: pointer
-    margin-right: 5px
-    border-radius: 10px
-    background: #FBEEC1
-
-.current_page
-  border: 2px solid #edeea4
-  padding: 15px
-  display: flex
-  align-items: center
-  justify-content: center
-  cursor: pointer
-  background: #bc9b6c
-
-
 .example-pagination-block + .example-pagination-block
   margin-top: 10px
 
