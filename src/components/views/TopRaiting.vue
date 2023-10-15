@@ -7,11 +7,11 @@ import {storeToRefs} from "pinia";
 import {onMounted, ref} from "vue";
 
 const rootStore = useRootStore();
-const {filmName,filmInfo} = storeToRefs(rootStore);
+const {filmName,filmInfo,pageNumber} = storeToRefs(rootStore);
 
 
 
-const pageNumber = ref(1)
+
 
 </script>
 

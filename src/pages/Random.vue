@@ -8,9 +8,9 @@ import CardItem from "@/components/CardItem.vue";
 import axios from "axios";
 
 const rootStore = useRootStore();
-const {filmInfo,filmName} = storeToRefs(rootStore);
+const {filmInfo,filmName,pageNumber} = storeToRefs(rootStore);
 
-const pageNumber = ref(1)
+
 
 
 

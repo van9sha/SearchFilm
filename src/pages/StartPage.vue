@@ -7,10 +7,10 @@ import CardItem from "@/components/CardItem.vue";
 import NavBar from "@/components/NavBar.vue";
 
 const rootStore = useRootStore();
-const {filmInfo,filmName} = storeToRefs(rootStore);
+const {filmInfo,filmName,pageNumber} = storeToRefs(rootStore);
 
 
-const pageNumber = ref(1)
+
 const sizePage = ref(12)
 const totalPage = ref(10)
 

@@ -7,7 +7,8 @@ import {useRootStore} from "@/stores/root";
 import {storeToRefs} from "pinia";
 
 const rootStore = useRootStore();
-const {filmName,filmInfo} = storeToRefs(rootStore);
+const {filmName,filmInfo,pageNumber} = storeToRefs(rootStore);
+
 
 
 
@@ -30,6 +31,19 @@ const {filmName,filmInfo} = storeToRefs(rootStore);
         :getFilm="rootStore.getFilm"
 
     />
+
+    <div class="page-wrapper">
+      <div class='page-wrapper-number'
+           v-for="page in 10"
+           :key="page"
+           :class="{
+           'current_page': page === pageNumber
+         }"
+           @click="pageNumber = page; rootStore.getStartedFilm()"
+      >
+        <strong>{{ page }}</strong>
+      </div>
+    </div>
   </div>
 
 

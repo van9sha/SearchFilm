@@ -1,5 +1,5 @@
 import {defineStore} from "pinia";
-import {shallowRef} from "vue";
+import {ref, shallowRef} from "vue";
 import axios from "axios";
 import {API_KEY, BASE_FILMS_URL} from "@/constants";
 
@@ -12,6 +12,7 @@ export const useRootStore = defineStore('root', {
         genreCase:'',
         topFilms250:[],
         list:shallowRef('most_pop_movies'),
+        pageNumber : ref(1)
     }),
     actions: {
         async getFilm() {

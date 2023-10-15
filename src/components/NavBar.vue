@@ -11,7 +11,7 @@ import {Search} from "@element-plus/icons-vue";
 
 
 const rootStore = useRootStore()
-const {filmName,genreCase} = storeToRefs(rootStore)
+const {filmName,pageNumber} = storeToRefs(rootStore)
 
 const props = defineProps({
   filmName:{
@@ -42,7 +42,7 @@ const handleSelect = (key: string, keyPath: string[]) => {
       @select="handleSelect"
       style="position: fixed; width: 100%; top:0;font-family: Hahmlet,serif"
   >
-    <el-menu-item index="0" @click="router.push('/');rootStore.getStartedFilm(); rootStore.genreCase=undefined;rootStore.list='most_pop_movies';"><img class="img" src='/src/assets/img/logo2.jpg'></el-menu-item>
+    <el-menu-item index="0" @click="router.push('/');pageNumber=1;rootStore.getStartedFilm(); rootStore.genreCase=undefined;rootStore.list='most_pop_movies';"><img class="img" src='/src/assets/img/logo2.jpg' alt=""></el-menu-item>
     <div class="flex-grow">
       <Input :filmName="filmName"
              v-model="rootStore.filmName"
@@ -54,7 +54,7 @@ const handleSelect = (key: string, keyPath: string[]) => {
 
     <el-menu-item
         index="1"
-        @click="router.push('/Random');rootStore.getStartedFilm(); rootStore.genreCase=undefined;rootStore.list='most_pop_movies'"
+        @click="router.push('/Random');pageNumber=1;rootStore.getStartedFilm(); rootStore.genreCase=undefined;rootStore.list='most_pop_movies'"
     >
       Random films
     </el-menu-item>
@@ -67,17 +67,17 @@ const handleSelect = (key: string, keyPath: string[]) => {
     >
       <template #title>Genres</template>
       <div class="genres-title">
-        <el-menu-item index="2-1" @click="router.push('/film-action'); rootStore.list='most_pop_movies';rootStore.genreCase='Action';rootStore.getStartedFilm();">Action</el-menu-item>
-        <el-menu-item index="2-2" @click="router.push('/film-adventure'); rootStore.list='most_pop_movies';rootStore.genreCase='Adventure';rootStore.getStartedFilm()">Adventure</el-menu-item>
-        <el-menu-item index="2-3" @click="router.push('/film-biography'); rootStore.list='most_pop_movies';rootStore.genreCase='Biography';rootStore.getStartedFilm()">Biography</el-menu-item>
-        <el-menu-item index="2-4" @click="router.push('/film-comedy'); rootStore.list='most_pop_movies';rootStore.genreCase='Comedy';rootStore.getStartedFilm()">Comedy</el-menu-item>
-        <el-menu-item index="2-5" @click="router.push('/film-documentary');rootStore.list='most_pop_movies';rootStore.genreCase='Documentary';rootStore.getStartedFilm()">Documentary</el-menu-item>
-        <el-menu-item index="2-6" @click="router.push('/film-drama'); rootStore.list='most_pop_movies';rootStore.genreCase='Drama';rootStore.getStartedFilm()">Drama</el-menu-item>
-        <el-menu-item index="2-7" @click="router.push('/film-fantasy'); rootStore.list='most_pop_movies';rootStore.genreCase='Fantasy';rootStore.getStartedFilm()">Fantasy</el-menu-item>
-        <el-menu-item index="2-8" @click="router.push('/film-history'); rootStore.list='most_pop_movies';rootStore.genreCase='History';rootStore.getStartedFilm()">History</el-menu-item>
-        <el-menu-item index="2-9" @click="router.push('/film-horror'); rootStore.list='most_pop_movies';rootStore.genreCase='Horror';rootStore.getStartedFilm()">Horror</el-menu-item>
-        <el-menu-item index="2-10" @click="router.push('/film-sport'); rootStore.list='most_pop_movies';rootStore.genreCase='Sport';rootStore.getStartedFilm()">Sport</el-menu-item>
-        <el-menu-item index="2-11" @click="router.push('/film-thriller'); rootStore.list='most_pop_movies';rootStore.genreCase='Thriller';rootStore.getStartedFilm()">Thriller</el-menu-item>
+        <el-menu-item index="2-1" @click="router.push('/film-action'); rootStore.list='most_pop_movies';pageNumber=1;rootStore.genreCase='Action';rootStore.getStartedFilm();">Action</el-menu-item>
+        <el-menu-item index="2-2" @click="router.push('/film-adventure'); rootStore.list='most_pop_movies';pageNumber=1;rootStore.genreCase='Adventure';rootStore.getStartedFilm()">Adventure</el-menu-item>
+        <el-menu-item index="2-3" @click="router.push('/film-biography'); rootStore.list='most_pop_movies';pageNumber=1;rootStore.genreCase='Biography';rootStore.getStartedFilm()">Biography</el-menu-item>
+        <el-menu-item index="2-4" @click="router.push('/film-comedy'); rootStore.list='most_pop_movies';pageNumber=1;rootStore.genreCase='Comedy';rootStore.getStartedFilm()">Comedy</el-menu-item>
+        <el-menu-item index="2-5" @click="router.push('/film-documentary');rootStore.list='most_pop_movies';pageNumber=1;rootStore.genreCase='Documentary';rootStore.getStartedFilm()">Documentary</el-menu-item>
+        <el-menu-item index="2-6" @click="router.push('/film-drama'); rootStore.list='most_pop_movies';pageNumber=1;rootStore.genreCase='Drama';rootStore.getStartedFilm()">Drama</el-menu-item>
+        <el-menu-item index="2-7" @click="router.push('/film-fantasy'); rootStore.list='most_pop_movies';pageNumber=1;rootStore.genreCase='Fantasy';rootStore.getStartedFilm()">Fantasy</el-menu-item>
+        <el-menu-item index="2-8" @click="router.push('/film-history'); rootStore.list='most_pop_movies';pageNumber=1;rootStore.genreCase='History';rootStore.getStartedFilm()">History</el-menu-item>
+        <el-menu-item index="2-9" @click="router.push('/film-horror'); rootStore.list='most_pop_movies';pageNumber=1;rootStore.genreCase='Horror';rootStore.getStartedFilm()">Horror</el-menu-item>
+        <el-menu-item index="2-10" @click="router.push('/film-sport'); rootStore.list='most_pop_movies';pageNumber=1;rootStore.genreCase='Sport';rootStore.getStartedFilm()">Sport</el-menu-item>
+        <el-menu-item index="2-11" @click="router.push('/film-thriller'); rootStore.list='most_pop_movies';pageNumber=1;rootStore.genreCase='Thriller';rootStore.getStartedFilm()">Thriller</el-menu-item>
 
       </div>
 
@@ -85,7 +85,7 @@ const handleSelect = (key: string, keyPath: string[]) => {
 
     <el-menu-item
       index="3"
-      @click="router.push('/film-250');rootStore.genreCase=undefined;rootStore.list='top_rated_english_250';rootStore.getStartedFilm()"
+      @click="router.push('/film-250');rootStore.genreCase=undefined;rootStore.list='top_rated_english_250';pageNumber=1;rootStore.getStartedFilm()"
   >
     TOP 250
   </el-menu-item>
